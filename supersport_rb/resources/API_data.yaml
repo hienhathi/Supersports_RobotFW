@@ -1,0 +1,12 @@
+API_common:
+  api-end-point: https://api.supersports.co.th
+  content-type: application/x-www-form-urlencoded; charset=UTF-8
+  x-newrelic-id: VQMOUF5SABAHXFBWAwUOX1Q=
+  zalora-lang: en
+
+wishlist_item1:
+  simpleSku: CO315AC584CJTH-9290818
+  selectedSizeSystem: 
+  wishListId: 
+  
+

@@ -1,0 +1,8 @@
+device_info:
+  hien_device:
+    deviceName: R58N33NW2EW
+    platformName: android
+    platformVersion: '11'
+    app: C:\Users\hienht\Desktop\SuperSport\AppFile\Supersports.apk
+    newCommandTimeout: 300
+    autoGrantPermissions: True

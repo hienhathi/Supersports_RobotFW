@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "6dd604e1-05cf-4ad0-8083-a8a5ea2cc369",
+		"name": "Supersports",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-newrelic-id",
+						"value": "VQMOUF5SABAHXFBWAwUOX1Q=",
+						"type": "text"
+					},
+					{
+						"key": "cookie",
+						"value": "PATH=/; Path=/; Max-Age=5256000; doraemonSessionId=MTYzOTAxMTc1NnxQWDdrWjZ1OFA4YkhkT3oxLWlrTHdNaHJqZXdnUFVkTVQ0aW5MMUZ3cGNOYVlGM1J8IaJU5cK7VmfPCNSXjWafQrz3QBk%3D; AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3; AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "user-agent",
+						"value": "Android/30/samsung SM-M215F/343/f09717aa84aeac0b2dd9fc97edc89af4/1080/2131/1.4.13",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "zalora-country",
+						"value": "TH",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "zalora-lang",
+						"value": "en",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "accept-encoding",
+						"value": "identity",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "host",
+						"value": "api.supersports.co.th",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "connection",
+						"value": "Keep-Alive",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content-length",
+						"value": "43",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-postman-captr",
+						"value": "816431",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "email=hienht%40smartosc.com&password=HienHa"
+				},
+				"url": {
+					"raw": "https://api.supersports.co.th/v1/customers/login?setLang=en&d=a",
+					"protocol": "https",
+					"host": [
+						"api",
+						"supersports",
+						"co",
+						"th"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"login"
+					],
+					"query": [
+						{
+							"key": "setLang",
+							"value": "en"
+						},
+						{
+							"key": "d",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add item to wishlist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-newrelic-id",
+						"value": "VQMOUF5SABAHXFBWAwUOX1Q=",
+						"disabled": true
+					},
+					{
+						"key": "cookie",
+						"value": "doraemonSessionId=MTYzOTEwNTEzOHxSb2VJYjRNNURVX2RlMm1pYl9GZDZCMnFNQ0gtUUd6YndRb0lqbkU3ZlRZcEdweXZrY1VLcXpGN2V6SjRaSkxCOG1ZdXQ0Y25FY3BYMU4zOWpRcWo0NXFIdllTdkZGeURSdE1wQUhUTmVmZlRLWVdwWTZaUjBDRnJsWnhLUmRPVFJKOHN4UV9WeHBQNkZJODc0Q2lOVXM3dldkRmhNOFdkUU1NdDZIOUtWVHFyY0o5MGtLWi1hMVNFNW9tN2h0QzBYLURuVDhrdHlScVp4eFB4dEdfd1lRYkxOeFQ5bTZwNFM0em54TDJjby1OMHR3ZDE2SkpPWUhLYnFSdF9rMTl3a3NIRGtxQXdPWVMxWjYySlNkWFpzSDZSbmt5ZUx4cjZGVUtDeGc3WlVBbkxaem5xN3lTbEREV0o0dU9HcWt5NHpzR0gwV2kxMk1QYVY2WmtCREgyLU13REhsNmk0U1VRYmt4OFRUZ2xIUVU2TEdGemstTDRXWlR2clNNMHJadnkwLVYwaEg3LV9Oem5ZeVBVY2dxWTIzanA3aGx3T1ZGQUVyV2pWU3g0WkEyX21tcUJNS0xEZDFWR3RpU21YWG1JNVZEQzFKdU0wcGhSX29qUUNxYV9iV21PaU1GaUFCcWp0YmM4WDZ5SDhGbUhXcmJjM2ZGV0VkYW5fQjBESFVjMWhrSHpHVnRoQUNpcG92TjU4aVBPbnRZNG1vM3dmbkQ0M0ZoOEFKc2JfcXJEdGo0WE1yXy1oOHNXTlZWWTVrcWVLbjJ5eEl4OWlfNG9EXzFlODhXV3dDSDhMUzA4UVJHMDFLclE5UzFtVjdYRFNnc1phejE3RjFBajc0QmdyaThfOFpBSHVsTW00VmhST2JXRmg5czcxZk1PQkFyVFhqUWxGZEZndTNESTlNcUNRZEhNY1otZXFmTU5NTUhqYjFTUkl6cER6VUhSaEMtay0tbndBX1dIRGZRTWZnYlRRR0haZ01hZXJmOXJUSFZSaUk1dTBocFZWZ2duWjdwYWFRPT18Gt2RHjtMHn1-9vx3Vm3xAB4Luys%3D"
+					},
+					{
+						"key": "user-agent",
+						"value": "Android/30/samsung SM-M215F/343/f09717aa84aeac0b2dd9fc97edc89af4/1080/2131/1.4.13",
+						"disabled": true
+					},
+					{
+						"key": "zalora-country",
+						"value": "TH",
+						"disabled": true
+					},
+					{
+						"key": "zalora-lang",
+						"value": "en"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "identity",
+						"disabled": true
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "host",
+						"value": "api.supersports.co.th",
+						"disabled": true
+					},
+					{
+						"key": "connection",
+						"value": "Keep-Alive",
+						"disabled": true
+					},
+					{
+						"key": "content-length",
+						"value": "77",
+						"disabled": true
+					},
+					{
+						"key": "x-postman-captr",
+						"value": "9507356",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "selectedSizeSystem=International&simpleSku=CO315AC584CJTH-9290818&wishListId=",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.supersports.co.th/v1/wishLists/items?setLang=en&d=a",
+					"protocol": "https",
+					"host": [
+						"api",
+						"supersports",
+						"co",
+						"th"
+					],
+					"path": [
+						"v1",
+						"wishLists",
+						"items"
+					],
+					"query": [
+						{
+							"key": "setLang",
+							"value": "en"
+						},
+						{
+							"key": "d",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove an item from wishlist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-newrelic-id",
+						"value": "VQMOUF5SABAHXFBWAwUOX1Q="
+					},
+					{
+						"key": "cookie",
+						"value": "PATH=/; Path=/; Max-Age=5256000; doraemonSessionId=MTYzOTAxMTU2OHx6NEdsSnZjLWVHR3Q1SllhZVl6Sm9QeGI4V0U3NlZuc0pMbmc4SEpPd2NIdmdkWWkzVHAyOUJqR2k3MXduTEVLYW5rcUxVLU5QbzRqbmlyNWRVb01pNVBBZGFmcWk2NkFJSGNiUlZtNnA3Z3RKQkd4YWxWWURrdHAtN19mU216Qkpabkh5eUZKeldhLWJZR1NQUV9KdXpJTnNrUVlnNVhsRjdaOVJKRF9pLWJqWGczdjZnYkRzb2J3U0RhWVA5OHBmallXOXFpWnk4a2txR3ZCN2FxOTNkQU5Eei1obDFrNGFwUnY1T1dXOU1MNFE3eWRRbmhscDN3Z1lTTUUtS2U2N1RseDlWWnBpNHRqMnFReU5rQWlFbnZVYk4yRWJVa09JUWFreWFCTkxNbTlCdTVCc1ZsR205cVZPWHJzaVR0aW5FQkVCOXpyNC1HRzNRanNtUmtOSDRUcVJ6ZllqV3h1azhvcUhjMm0tMUlfbVpfRk9KWGl1RWJHa0ZpUlE5cTJCVjhDX1ptNmJrb3d3M3VEZlBVX1ZhanN6NmkwZE4ybXlPcFl4NU5jZjdjVjBMNEt1bGwxTW5zeUhaT0hRNm8wdFZNQmpqbUhuN2V6RkZaUEZMMXdIay01cDZxX3FOazU5akw4Tko3bWo2Y2hUZXY2bnZuVnN0ZHd1SC1JTWwtX25WU3ozNWVJRXg4dXJzczU5QnlZUFZUTFFvVG01VGp5bmpydnZTUS1sMnQzRnU3MVc4cDY3MkN6cURJdGFpczI4WWxsWDlicm9IX1htdTQ3VzZCQWVrclV4dzYyeTZZUDNXcExOU3hwYm04bG9DMm5SNXo3NkpVamxSWGRLS3plS2hRc0pTbE9GNVJRcVZndTZ4R1laMkdWSG44T0ktZ21WdTEtek1nQVFMYUVuQ19lWVJCZ21kRE1IQmo5bVZCdEk3Skx5Q0lLVzYtYUUzNS1HaHFnNFN1Yjg2RVlUaUtkNWxpN0tuaUdRa2lLa1lmRXZRdFhLRXExNFRMQ2dSbWZoVEtoSmN5RXyRR406_i_GoG1J-HR7tIujxSCOzw%3D%3D; AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F05AAB602511A399AF85B8EA3C345289CF90BB24D7131CECE3037F9D4EC3735DF3; AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F05AAB602511A399AF85B8EA3C345289CF90BB24D7131CECE3037F9D4EC3735DF3; f59f9fd9576397c679c3d3eb52622f8d=d7175d5c973c06f41d7acb5fe81b342b5c57d8d3d45e35412ed0d275f0b0b38c9bf16dc9629e2f08034f1bb052613a0efac43782d5dc6096b1e119bbd3bd67a6%3A01ae757ced357bf3dbee000046bca8b5e5166316017bce8298a3e7b01662bbe8"
+					},
+					{
+						"key": "user-agent",
+						"value": "Android/30/samsung SM-M215F/343/f09717aa84aeac0b2dd9fc97edc89af4/1080/2131/1.4.13"
+					},
+					{
+						"key": "zalora-country",
+						"value": "TH"
+					},
+					{
+						"key": "zalora-lang",
+						"value": "en"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "identity"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "host",
+						"value": "api.supersports.co.th"
+					},
+					{
+						"key": "connection",
+						"value": "Keep-Alive"
+					},
+					{
+						"key": "content-length",
+						"value": "0"
+					},
+					{
+						"key": "x-postman-captr",
+						"value": "6141594"
+					}
+				],
+				"url": {
+					"raw": "https://api.supersports.co.th/v1/wishLists/items?simpleSku=CO315AC584CJTH-9290818&wishListId=&setLang=en&d=a",
+					"protocol": "https",
+					"host": [
+						"api",
+						"supersports",
+						"co",
+						"th"
+					],
+					"path": [
+						"v1",
+						"wishLists",
+						"items"
+					],
+					"query": [
+						{
+							"key": "simpleSku",
+							"value": "CO315AC584CJTH-9290818"
+						},
+						{
+							"key": "wishListId",
+							"value": ""
+						},
+						{
+							"key": "setLang",
+							"value": "en"
+						},
+						{
+							"key": "d",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
