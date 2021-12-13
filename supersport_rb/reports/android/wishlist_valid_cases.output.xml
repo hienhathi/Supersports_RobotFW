@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.9.6 on win32)" generated="20211212 21:27:19.216" rpa="false">
+<suite id="s1" name="Tests" source="C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\tests">
+<suite id="s1-s1" name="Api" source="C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\tests\api">
+<suite id="s1-s1-s1" name="Wishlist Features" source="C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\tests\api\wishlist_features">
+<suite id="s1-s1-s1-s1" name="Wishlist Add And Remove Valid" source="C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\tests\api\wishlist_features\wishlist_add_and_remove_valid.robot">
+<test id="s1-s1-s1-s1-t1" name="Verify add valid item to wishlist function">
+<kw name="Template - Add item to wishlist valid cases">
+<arguments>
+<arg>NI083AC682CKTH</arg>
+</arguments>
+<kw name="Add item to wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.add_to_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:20.814" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:20.814" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:20.814"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:20.814" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:20.814"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:20.814" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:20.814"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:20.814" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:20.814"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:20.813" endtime="20211212 21:27:20.814"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${add_to_wishlist_body}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20211212 21:27:20.814" level="INFO">${body} = simpleSku=NI083AC682CKTH</msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:20.814"></status>
+</kw>
+<kw name="Post On Session" library="RequestsLibrary">
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${api_end_point.add_to_wishlist}</arg>
+<arg>data=${body}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.324" level="INFO">POST Request : url=https://api.supersports.co.th/v1/wishLists/items 
+ path_url=/v1/wishLists/items 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '24'} 
+ body=simpleSku=NI083AC682CKTH 
+ </msg>
+<msg timestamp="20211212 21:27:21.461" level="INFO">POST Response : url=https://api.supersports.co.th/v1/wishLists/items 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:18 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTIzOHxKYlQzQ2NCZ2pjbUx0STdPbFp1V2tDVHJNWWFIRkZ0TzRxWFJWNUVpUE8zTmR5RlpIeENKc081X2FHY0JKRjRuRk1ma2YxZ1RBbVFuMkxTWW9NX1JiS1NNZUFCaUIxd2FBUC1ULXlCbzVKY0xSdXRvT2lnMlNwNXA0aktqYnZZYkQtNHRubGVsb1hmeXE0QndGMUpQSzAycFpNcTZwTU4tVkNqcUlIYlkxM0ZJZndHckxyWjBPSlZnb1FhYVltRGN3bDBTMWlDY2ZVM1ZEc0lWTEdSNXpSMFVwUmhtY0lOdFdHelRoanN4cTlhajEzN3hqYllnM1FuUU1IZnVpRk83UkFhTzFoMzhWZGptS2tqSXBWZ3hHRFA2MGdiU3lMbm5FUklkZ0dKNWV2X01DNTFpSWpadUw2LUdMTUUzSE1SSWFHUURYejVHdHBkSlRzemxjUXpZVDk2RlYxd2FZUFF0VHFNTk9mT2ZpWlVCcDU1OXo0REU1ZnlPZ2xGWlNEQ2lUZWRZU1VNNnBhaWpJaWdZYkFWZkFfWkxKVU1DQUJpa0c4cTUtTjZxMjI4bTRyN3hKUi1aQ21CS2R3ZFFoNFRPc2JlMXdsTmRyTTRxSnY1V3VYZkRJQzROVUpYZUJKOU00NHRyaUJkMHNzUnp6SkVQRG5icWdldjZadjhJdWtKcG56Zm81ODU2NDZrdEgzTW5QUlJ3dXMycnRPd3V1UHI4RFVMbmtza0s5TS03VEEyWWNoNXA0MXlQSVlXZlNJdnNfcDljNUp1bnJJSjJVVDlLMmQtY256dHcteEFReGpvSVJBb1cteFhzckY0ZVJJT2N0TW5CNUF4REJORkc4ZUItS2RKTnJVdU44MF9Sc1lnWXlmbVZuMVVkOGFFeDZvWjF1b1UtSTBGTHVIRGIwSVYzRVVoUTVweFhVblA3NVR3M3I5aGg3UVVPWkVwWGNjMWVKb180NEhpN0JNZ2JWXzllYmFGOEE3cm9LT0JYbi1fQURSVT189KP2LvSdWvAhhQSuFUwoi05lo28%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '62', 'Connection': 'keep-alive'} 
+ body=(7426722 
+ </msg>
+<msg timestamp="20211212 21:27:21.461" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:21.462" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:20.814" endtime="20211212 21:27:21.462"></status>
+</kw>
+<msg timestamp="20211212 21:27:21.462" level="INFO">${response} = None</msg>
+<status status="PASS" starttime="20211212 21:27:20.813" endtime="20211212 21:27:21.462"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:21.463" endtime="20211212 21:27:21.463"></status>
+</kw>
+<kw name="Delete item in wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.delete_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.464" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:21.465" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:21.464" endtime="20211212 21:27:21.465"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.465" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:21.465" endtime="20211212 21:27:21.465"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.465" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:21.465" endtime="20211212 21:27:21.465"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:21.465" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items?simpleSku={sku}, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:21.465" endtime="20211212 21:27:21.465"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:21.464" endtime="20211212 21:27:21.465"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${api_end_point.delete_wishlist}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${end_point}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.465" level="INFO">${end_point} = https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC682CKTH</msg>
+<status status="PASS" starttime="20211212 21:27:21.465" endtime="20211212 21:27:21.465"></status>
+</kw>
+<kw name="Delete On Session" library="RequestsLibrary">
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${end_point}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.915" level="INFO">DELETE Request : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC682CKTH 
+ path_url=/v1/wishLists/items?simpleSku=NI083AC682CKTH 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211212 21:27:21.915" level="INFO">DELETE Response : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC682CKTH 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:19 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTIzOXxEdTJ2WXR2X2FyQjBGcVlpSnRmcGRTTUhTRVg3bV9LdHNreXV0bVRDQlF6ODdadjUzQ3AwNEZXc2U3VG9yU0xpOWxGUGc1a2dIVF9KU0NXMVlqdWppeFZvSEpNRW44Z1poR3hrWUtLUUsyekh1YWMtM2IzdmZnU0VQZU5PckFMWnJacVk2WHRnZ3pMWWd0Vk9PVlEyajJSZzJoMGR4bnNIMWxHZ0Npckl2RG9KWXZ0LXRKQzZyVWltQ1Z6RktucHlGN1NQVWtEQmZuamdPd0JSR0pFNlZ6WkxQLUcwN0c1Z3JxOGdxbms4S2ZaUUZTMThreVpJNXhhb1JkYlY5ZlVmcE9tQjQ2TkFRTy1FM0VsWjFza0Z6Z3NaX3NaQy1pOE5XbWZhTzVRNGd0V2tmTjdfc01ucEVqZklSelIwMEJTaV9BOFZycjljTzNJZjJYeTcwZTloTHE5bjdWeFNxM2VnTW1xUWdTc0NTUkhsWUV4QXpqUjEwLTJhZ3QxZUFLTXBlakdqQ09DMWFVYzNwOFV6UF9XVEZ0cFJpbVpMdVJ5VTViWGxsUXNiT2tJdHpvWmk5TTVkdnVGQlFoekVGWTlycnhXMVh3TjZEREprZEhEb1I4Y2o2SXBsUWFTY1FBUW1vbUdIZmZENERkTVNSV0FPM0RUTDlBMEs5M3JmRHo1MGlaZDFvT19DVGVsaXhFbi1HQ1oyenF1U1FGeFpsM2VFZTRrWTN3WHpJVmUwMU1VMHZJSFcycEt4LWE4VDlrOFBranlFc0pic0Y3dUZfWTZNZ2dZVXJvZGNnd3FfcHRmLTNKWm1PMGgweWllcTU5TVl4UnhvRXFKMWNDNDg1Ny1OeENwRDkyNTFoekM0VW5EY29mNF8xVGNxY2kyS0hzcGp6YWptYXA1RjVFUGxvQmtPSEF3SjV6UV9hNk1OSUNPSE14OXR3bnN6bU5sdDRzeTVxaEdCcHJiZWdLeklQTTc3VnVrdURIQ2dGOW5iWVRTdXpEVT18znKBvbUpvIEl4lAeNMypmZf5Oz4%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '15', 'Connection': 'keep-alive'} 
+ body= 
+ </msg>
+<msg timestamp="20211212 21:27:21.915" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:21.925" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:21.465" endtime="20211212 21:27:21.925"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:21.926" endtime="20211212 21:27:21.927"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:21.463" endtime="20211212 21:27:21.928"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:20.813" endtime="20211212 21:27:21.928"></status>
+</kw>
+<tags>
+<tag>wishlist</tag>
+<tag>wishlist_add_and_remove_valid</tag>
+</tags>
+<status status="PASS" starttime="20211212 21:27:20.811" endtime="20211212 21:27:21.930" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Verify add valid item to wishlist function">
+<kw name="Template - Add item to wishlist valid cases">
+<arguments>
+<arg>AD001AC686BQTH</arg>
+</arguments>
+<kw name="Add item to wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.add_to_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.941" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:21.941" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:21.941" endtime="20211212 21:27:21.941"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.951" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:21.941" endtime="20211212 21:27:21.951"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.956" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:21.952" endtime="20211212 21:27:21.957"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:21.960" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:21.957" endtime="20211212 21:27:21.961"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:21.941" endtime="20211212 21:27:21.961"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${add_to_wishlist_body}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20211212 21:27:21.962" level="INFO">${body} = simpleSku=AD001AC686BQTH</msg>
+<status status="PASS" starttime="20211212 21:27:21.962" endtime="20211212 21:27:21.962"></status>
+</kw>
+<kw name="Post On Session" library="RequestsLibrary">
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${api_end_point.add_to_wishlist}</arg>
+<arg>data=${body}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.347" level="INFO">POST Request : url=https://api.supersports.co.th/v1/wishLists/items 
+ path_url=/v1/wishLists/items 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '24'} 
+ body=simpleSku=AD001AC686BQTH 
+ </msg>
+<msg timestamp="20211212 21:27:22.350" level="INFO">POST Response : url=https://api.supersports.co.th/v1/wishLists/items 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:19 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTIzOXxsVmlyWWI0OUowS1VQMzFQallDaDlWbU0td3VlV2hUc25DampEYlZJUVk3OThKY1NGNVR5ZWh3NHlXaFhDbmdZVlRsWmJjTURfVFhtZGJ2NW5OdUFtV0JXamwwSGgzMkp2ZFp1RkhBQXlCSTd0M0RBcUxTMHV6bXhwMVZ5SVc3V0NsSUhLbndGdmwyVmZJT29BSUltNkpDOG4wWEJKcXFSSEZIOW5rcWdWeDNVdWgyUlpwVEc0RlJUYUx1UEU1NUNjd2Nzazk3UUJsMHVUQjFlZUFGZ2VxZjlUanVtV0RleGxQTHZxX3hZX3JET1l4aUNoQldkNFVTTF9waEpoQW54NmQzOEtLc0lMOG1kSTFsaVRETkVHcHdlanU2LXZHYXoxMV9ZbUdqNmlrZm5fYmJIWTJuVnVKc0dZckVDS2xob3hqZ2I1LVBiUXlRWDBwd3lUemFNS1J2MUpxLU5SRi0yb2FYelhyM2FGb3hRUk5CY3V0dnJ6Q0hDY1JxMmtIdEZ6ZDI4amcteGFuTHZFbnRMRGYyb0xQaFlma3ZzWmNZZVNfdEZpbFFyZElxdHNqanVEWlBhYkZETG9fekl5ajZBNEQxZWRaWHdyNzBHRjZQdGhUNkxQRnIwWUVuZXVjdUVidjM2dFBWSklzbk9TUFpWdEtlaFdaNWo5QmVHRzVJemtYRzlZZmNYWnNHbEVpRVFHQWlGSzQ3UGRtRHR5THhsbTFWYXQ2YzVQTHFDRVJySFlCNjYxN0wwaGlJZUw3RUdVVVJOV1VpMGd5OTMyZTBleDRoajREb3FJMnJnQW1PbWY1Mi12UlBaQnFub21wOU9mMmZzOFRJQ1JYdFRJYnQtTVRPMU9uU1BPY0RUX1ptS0xSVTdTTnZSdGkxQ0tpbERCQnNULXFqY0k3a29UWnNyM2FxbzlueHMzYzdBTGVtSkpIcG1vMlQ5RTRRV0lUZ2Y0OW1VaDc5LVJRQko4SU9KcWZKbEMxdVQxcFpGZHcwc0o1ST18NKT_7yItEvK1gZ40sNPPzC8Ucj4%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '62', 'Connection': 'keep-alive'} 
+ body=(7426724 
+ </msg>
+<msg timestamp="20211212 21:27:22.350" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:22.352" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:21.962" endtime="20211212 21:27:22.353"></status>
+</kw>
+<msg timestamp="20211212 21:27:22.353" level="INFO">${response} = None</msg>
+<status status="PASS" starttime="20211212 21:27:21.941" endtime="20211212 21:27:22.353"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:22.354" endtime="20211212 21:27:22.354"></status>
+</kw>
+<kw name="Delete item in wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.delete_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.360" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:22.361" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:22.359" endtime="20211212 21:27:22.361"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.363" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:22.362" endtime="20211212 21:27:22.363"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.367" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:22.363" endtime="20211212 21:27:22.367"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:22.368" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items?simpleSku={sku}, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:22.368" endtime="20211212 21:27:22.371"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:22.357" endtime="20211212 21:27:22.372"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${api_end_point.delete_wishlist}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${end_point}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.373" level="INFO">${end_point} = https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC686BQTH</msg>
+<status status="PASS" starttime="20211212 21:27:22.372" endtime="20211212 21:27:22.373"></status>
+</kw>
+<kw name="Delete On Session" library="RequestsLibrary">
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${end_point}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.931" level="INFO">DELETE Request : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC686BQTH 
+ path_url=/v1/wishLists/items?simpleSku=AD001AC686BQTH 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211212 21:27:22.937" level="INFO">DELETE Response : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC686BQTH 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:20 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTI0MHxNa3BRbUpTQlRIbVFTQXBpYmt3a0NOQXlIazRiQ0Zja1Y2XzJnT3pDdE4xZE5pWDNwLVRzbDdrQVZJa1hIQ2NMV01DY1JGcWp5cW90bFFwWS1HQ2N1UWltVmg3MkQzdVFpekNHLV9KaS1YTmpfdGV6T0dOUzZTN05uMEZ5VGgxd0NVR3BuMTFra0tSQWtJak1jaGlmUlBHUTBKVS1KTFUtc1NZTmQwWGFUYTlHV1Q2YnR0dDVsMU0zbUxLT2MxdmtRY2tiS09uRHpkZE95VXFCSkphdEtoM0thYnJMRTRKRjlmeVh3TDJZWVdRaGNfVFB2ZW5RNWJfZDc2YjAtYzlRRFFPMVZabndYemNJRVZ6Rzh3YjVZZHdpclV5aThBVmZ4SHhYSk42OTREQ04wVXp6YUVTSTlaem5xUnUxcEkwZ1B5UERaNlJfZE5VVGpfNUIyNkZNWHlXcElsanZMR1l2ek02MlFzRE14MFZsWXBjbDVzVkktczFjem9TVklVYnRlc3k1MUhrNXN3cHRlckJtM24tTkFyYlpDVXhGUkhadjYtTmlpLTZYbnZmb3BGLVdIZUNUUzhES29FWGpiX2oyd0s1Ym45bU44NGtpSU5BTTFOUzAySmxDa3NBWlZPbE81M0dkeWlJM0tBcWpGODc5S1h0eTEzN1ZZa0ZMQ0Y4WEtycU5vQjZ3c1JKSmxzWmlDNXV0d2hkVmdoSmtwRG41MzNPb0s0ZFVHN0FHb0RPOUdEeU5QWk9Ld3NvTV91S0k5VTJ6NV9LQW5TWUppQmdHNGRZME1xOVJRMWJfeG85VW8wbVFxYjU2OWlaY1FQU1RRTUFIQ2dRVWZlTUJodjhDQzRJMGNRa2V2MklXUS1DTWFTaVNQNWN0ajV6WVM0RUg2YXQ5N1BlQjE1aHZMWGZYckJNYW5sS3JXSkpmcUZ5WXZxTXozc0hJVXIyNkFCZVp5UzRsOEVnVGo2VExJaC01Ym5MbDlMdWpsOGFfT2QzVmhlMD18K_WdGOkV-XEYGHpENqq_7FsrDww%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '15', 'Connection': 'keep-alive'} 
+ body= 
+ </msg>
+<msg timestamp="20211212 21:27:22.938" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:22.940" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:22.374" endtime="20211212 21:27:22.941"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:22.942" endtime="20211212 21:27:22.942"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:22.356" endtime="20211212 21:27:22.942"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:21.941" endtime="20211212 21:27:22.942"></status>
+</kw>
+<tags>
+<tag>wishlist</tag>
+<tag>wishlist_add_and_remove_valid</tag>
+</tags>
+<status status="PASS" starttime="20211212 21:27:21.937" endtime="20211212 21:27:22.945" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Verify add valid item to wishlist function">
+<kw name="Template - Add item to wishlist valid cases">
+<arguments>
+<arg>AD001AC325CGTH</arg>
+</arguments>
+<kw name="Add item to wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.add_to_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.963" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:22.963" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:22.963" endtime="20211212 21:27:22.963"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.963" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:22.963" endtime="20211212 21:27:22.963"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.963" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:22.963" endtime="20211212 21:27:22.963"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:22.973" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:22.971" endtime="20211212 21:27:22.974"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:22.957" endtime="20211212 21:27:22.974"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${add_to_wishlist_body}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20211212 21:27:22.974" level="INFO">${body} = simpleSku=AD001AC325CGTH</msg>
+<status status="PASS" starttime="20211212 21:27:22.974" endtime="20211212 21:27:22.974"></status>
+</kw>
+<kw name="Post On Session" library="RequestsLibrary">
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${api_end_point.add_to_wishlist}</arg>
+<arg>data=${body}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:23.345" level="INFO">POST Request : url=https://api.supersports.co.th/v1/wishLists/items 
+ path_url=/v1/wishLists/items 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '24'} 
+ body=simpleSku=AD001AC325CGTH 
+ </msg>
+<msg timestamp="20211212 21:27:23.345" level="INFO">POST Response : url=https://api.supersports.co.th/v1/wishLists/items 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:20 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTI0MHxPNE1BMUtGR2tua3JYLWxLc3hFLWNDODhOTDVNcGNIbUZ3bjdQWnkxUDBKeWJQTzhsQWZQUVAxLWxFTDUtUjFybWpWN3lFZ3NVNUpZazhCQUphUHdpTUFQRXhLakZaZnB1eFlSWWVYTlEwX2MzQzRLeS1JMnR3bGg0bzBsZXFqckEySFZObm03eEEza1JGdWFaZjRCQ2JnSGt3MlhXaG0zZWNhdFo5ZWowS2QtbHVFWGdyX2pySWF1czdKcm9MYW5NUDl5dVRkWXA3WFEtMlh4MG9NRUtCSTVPbGdDcEFJUUoyQkVjaGx2RHozN0V3NXlZNFZDQUFSaTRpUTY2OGN5aDNzNHV0THN3bUdEUmo2ek9UbVF0ZkF4SzMwTGw5SlRGTkpxTldud3VYd1MxRXpDQzcwckVzaEJSYnRSMUtpb2hBYTZuUFJqRzV2Vm9maVVMVnFaMjFDNzZ5elAyTERLRVc3SW00eldEWWNwb3ZIcDBURmlDTFhBSmhSaFF6dkNtSndnX0QxeGtjY1p4RkdwZEMzYm4yel9yVTljTjBZMEFjM3k3QjVBRVlsNm9SSHpfQnNRcG5zeE1XNjByYTd1ZnowWk1iWWF3R2plSkc4NTZ0cklNNTBBek5jcnloSkg2SzZieUYwNXNqdi1mczJfOE92eC0yY0toZF9YenFUWVFWOHpraHRkY09Na09MaVptSVhMMlUtZTRURlBjaDJHNXlqOWRUczhxSnhDUDF6dWNteFJySGY0WllhYzNnblBmak9ydkJOVWx2eng3T25zck52dmxRUThTV0dnTlNhR3pVQVctQWVSWHdnMFdZSjU3bnZVRmRkTVlWRks0Y1p5bHVkVzc1OVAtNWN4bjBtSFhqMnVtOFhnLXNzaUJ5MGI2ZGVZY0RhVUpjVjRCV0ZfelBpUksxLUNKMWxsVm84WTNXMXBnWUtiRm5mdjl2UzNVRGRRNkphRUZNOHMyNUpMSDhOUTNQYnFTRUxickF2aEFkWT180SjtwjP07rNYt4m0qPZMb9O6W6s%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '62', 'Connection': 'keep-alive'} 
+ body=(7426726 
+ </msg>
+<msg timestamp="20211212 21:27:23.345" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:23.362" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:22.974" endtime="20211212 21:27:23.362"></status>
+</kw>
+<msg timestamp="20211212 21:27:23.363" level="INFO">${response} = None</msg>
+<status status="PASS" starttime="20211212 21:27:22.957" endtime="20211212 21:27:23.364"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:23.364" endtime="20211212 21:27:23.365"></status>
+</kw>
+<kw name="Delete item in wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.delete_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:23.371" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:23.372" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:23.370" endtime="20211212 21:27:23.372"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:23.374" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:23.373" endtime="20211212 21:27:23.374"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:23.380" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:23.375" endtime="20211212 21:27:23.381"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:23.382" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items?simpleSku={sku}, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:23.381" endtime="20211212 21:27:23.382"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:23.367" endtime="20211212 21:27:23.382"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${api_end_point.delete_wishlist}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${end_point}</var>
+</assign>
+<msg timestamp="20211212 21:27:23.390" level="INFO">${end_point} = https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC325CGTH</msg>
+<status status="PASS" starttime="20211212 21:27:23.382" endtime="20211212 21:27:23.390"></status>
+</kw>
+<kw name="Delete On Session" library="RequestsLibrary">
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${end_point}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.137" level="INFO">DELETE Request : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC325CGTH 
+ path_url=/v1/wishLists/items?simpleSku=AD001AC325CGTH 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211212 21:27:24.137" level="INFO">DELETE Response : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=AD001AC325CGTH 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:21 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTI0MXxISUNPQXlXNzlvN284VUZwaV8tLXZya0RYV1FaWHFUYlBza1E5LVhxellJeGpsSXhSTXNTRXl2RWpSOTU2TVdZcVpGY3FQY1FnQ3FkcXRDVThGSzYwNnAyYlZhUXI3SXdEMUZqWjllLWZWRzcyLUlEbzBCOGF0eWg0UWVuNHotQ0cxQjdpVlVyLXRqREZIQ19xZXMyelJpZ1NxbmpDQzJiZ2NmeXF1TkpudkJiSmZ0WUVoTkNaM09DZDZvR0FwV2ZfZjB2UDZFQnpqQkxBblY2dGJLTGc3dWloZ1ItYXlTejFweEZiR1FhVmJGMUlXcUt1aGNmekZyQ1hIZVRaZEZoUnRqeEQzOC1tVU9NeDBUSDlMLUZ2ZHltQlJnZG9qQXhjVDlQUk90SDVrbFQzOWxXbzliM0xjaUxaZWFXMTFfOTlxR1dTVjJwaGRVNG5SbUh4SU5Fc1Y1ZWYtMzF6cjcwUFVPZEpXWnhyVFpWcW5xOUwxeFVteEp0SXpwdE5JRWNGUW9DREFNUkl6Z3dtV3JwWWJOWUllUXVOcFNiRGdFcjBBVlk4cXgxUHlwMXZKQ1plNmk0VEJBNS1QeDcycnViRnNzSE93M3BTSlhxZ190ZldENnZwMnZKNDMxMjZMU1BoMERpaHZCZEt6WWFxZ2ZwdVVZM2lLYVNtODhqdk9aWXF1VFRXRGNLMk5mQXhaMG9SNHozc3BhblNtZjhkT1BubEtZd2FEZ1VHaktmSUp1aVdTLW5mU2dwVjcyaXRkYnhQMVltRzh3UURldmlYdmZUNjBQZnpRWGJoLVBqX0o4eUQ1VEcwdEROTk9wOS0taUxuNWVHbHZXSXpMbW5SYlJCbmdWYTNCOUh0UTBoVm9ZQXIybmc3S1NrcUtaU0gwVDdVZ0RlWWxQcUcyOWJ4WTVnT3VDLWNVZzl1MGdUeEdCdEQtME40OG9QUVBDRVV5aHlaVUVvSXlpcDNvWllPcXhIdzgxcUJWc1ppNWdZdTZTUkdLcz186IsICpXMRPvSg-j4puYgK0M78ck%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '15', 'Connection': 'keep-alive'} 
+ body= 
+ </msg>
+<msg timestamp="20211212 21:27:24.137" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:24.145" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:23.391" endtime="20211212 21:27:24.145"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:24.145" endtime="20211212 21:27:24.147"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:23.366" endtime="20211212 21:27:24.148"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:22.957" endtime="20211212 21:27:24.149"></status>
+</kw>
+<tags>
+<tag>wishlist</tag>
+<tag>wishlist_add_and_remove_valid</tag>
+</tags>
+<status status="PASS" starttime="20211212 21:27:22.953" endtime="20211212 21:27:24.150" critical="yes"></status>
+</test>
+<test id="s1-s1-s1-s1-t4" name="Verify add valid item to wishlist function">
+<kw name="Template - Add item to wishlist valid cases">
+<arguments>
+<arg>NI083AC353CGTH</arg>
+</arguments>
+<kw name="Add item to wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.add_to_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.162" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:24.170" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:24.162" endtime="20211212 21:27:24.170"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.172" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:24.170" endtime="20211212 21:27:24.172"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.176" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:24.173" endtime="20211212 21:27:24.176"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:24.180" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:24.177" endtime="20211212 21:27:24.181"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:24.162" endtime="20211212 21:27:24.182"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${add_to_wishlist_body}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.183" level="INFO">${body} = simpleSku=NI083AC353CGTH</msg>
+<status status="PASS" starttime="20211212 21:27:24.182" endtime="20211212 21:27:24.183"></status>
+</kw>
+<kw name="Post On Session" library="RequestsLibrary">
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${api_end_point.add_to_wishlist}</arg>
+<arg>data=${body}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.561" level="INFO">POST Request : url=https://api.supersports.co.th/v1/wishLists/items 
+ path_url=/v1/wishLists/items 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '24'} 
+ body=simpleSku=NI083AC353CGTH 
+ </msg>
+<msg timestamp="20211212 21:27:24.561" level="INFO">POST Response : url=https://api.supersports.co.th/v1/wishLists/items 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:21 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTI0MXx0UGctWHBsZ082bVZkV2FxOW0yMVpDMmp6VmJ5Q3c2S3g2NXNURVJ4SDI1bnJSbWp5Tl9ZaklXclBMM3VRb3FITFBwM0xkQUQ5YzREekRHc1dFSU91NUNUV1FSTDJtRkdOb0J1NFd3Z181X3YteEtnXzVUTG5ZSHFFcEtlNEZzRDVtc2FmdjNEN2g2WmZtZDBjSDM0TDBQeHpfNms5Wm00SW8zd0VVSVBMbWhGUmtGT2NuSXF0dC1qcFU1V3FzNkhxQWFMb0pSS0RxdEZ2ZHdtazlWbkhSV05TS0hGNjloeDFlWndhYndQRmRrOWdjU0NVandBV2JNZWlkVlc4LUxFam02NmpUblBwc1hDeGpDV0tkMGpvZWczSXlhZGVXbnJtYUVIY24yR25YS2JZUFJMWHZsMzdtS2NYVUtxVkVPUjhnRWZtQzBjbUlsVWUyd2JQOWpXdFhvQloxcTlKdEV2MF91cHpESGVtSGtZXzZoek1uRVdEbjFNc2dHQXpybUFmQjBQdlNjUEdGUzQ2V0FoT2pZbE5ISGRxSUNEOGlaVnh4ODJqcF9oX2FGMmQxSk5zSHRUdUMwR01BWkRjUW5CSFJFUWJmWFYtakhXNG9DZ2VmeWxlTU9EMFNDQ3FocnUxbkNncFc3RHlkZE5kSE9DZlRmYnVMR2hvZWJtSUE4T21rYnE1NkhxRGw3Sl9hU2hpc2RsX082dTlfaFAtVVRiZTdCdUtvWWliNlZVcTNUUE1XcW5wOVFUNExXRmJwbmhDNkhsMGpPR1FTc2k3R0Rnb0lwa3RvUXd4RndQN0tEWmNFMW1OOWlpXzd0WTM3R1huS0tlX2RkSVlBY3JtUjZlWEFLRUJGcGxsbEhPelBWZTRRRXdnTmVNOUJKTTRvLWplMWw4RGpPVmFSeElZOTRsTXdwaFpPT0VxcDhoOHZCYWVtT01nT01aZVBWNElfS2dSZUFqRnh1Wi1LRlZjRTJ0SzdZWGNBWHVuQVNkTVZ1WWlZdz18AbWmkMdy3F8dQWutJntaLAYc-O0%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '62', 'Connection': 'keep-alive'} 
+ body=(7426728 
+ </msg>
+<msg timestamp="20211212 21:27:24.561" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:24.573" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:24.183" endtime="20211212 21:27:24.573"></status>
+</kw>
+<msg timestamp="20211212 21:27:24.574" level="INFO">${response} = None</msg>
+<status status="PASS" starttime="20211212 21:27:24.162" endtime="20211212 21:27:24.574"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:24.575" endtime="20211212 21:27:24.577"></status>
+</kw>
+<kw name="Delete item in wishlist" library="wishlist_api">
+<arguments>
+<arg>${sku}</arg>
+</arguments>
+<kw name="Create session to server" library="common_api">
+<arguments>
+<arg>${wishlist_alias}</arg>
+<arg>${api_end_point.delete_wishlist}</arg>
+</arguments>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>${cookie_path}</arg>
+</arguments>
+<assign>
+<var>${cookies_str}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.585" level="INFO" html="yes">Getting file '&lt;a href="file://C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt"&gt;C:\Users\Admin\Desktop\supersports_robotfw\supersport_rb\resources\config\auth_cookie.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20211212 21:27:24.586" level="INFO">${cookies_str} = MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04...</msg>
+<status status="PASS" starttime="20211212 21:27:24.583" endtime="20211212 21:27:24.586"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>doraemonSessionId=${cookies_str}</arg>
+</arguments>
+<assign>
+<var>${cookies}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.588" level="INFO">${cookies} = {'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFN...</msg>
+<status status="PASS" starttime="20211212 21:27:24.587" endtime="20211212 21:27:24.588"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>content-type=${api_config.header.content_type}</arg>
+<arg>connection=${api_config.header.connection}</arg>
+<arg>zalora-lang=${api_config.header.zalora_lang}</arg>
+<arg>zalora-country=${api_config.header.zalora_country}</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.590" level="INFO">${header} = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'}</msg>
+<status status="PASS" starttime="20211212 21:27:24.589" endtime="20211212 21:27:24.590"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${alias_name}</arg>
+<arg>url=${url}</arg>
+<arg>cookies=${cookies}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<msg timestamp="20211212 21:27:24.595" level="INFO">Creating Session using : alias=wishlist, url=https://api.supersports.co.th/v1/wishLists/items?simpleSku={sku}, headers={'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'connection': 'keep-alive', 'zalora-lang': 'en', 'zalora-country': 'TH'},                     cookies={'doraemonSessionId': 'MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D'}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20211212 21:27:24.590" endtime="20211212 21:27:24.595"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:24.578" endtime="20211212 21:27:24.596"></status>
+</kw>
+<kw name="Format String" library="String">
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<arguments>
+<arg>${api_end_point.delete_wishlist}</arg>
+<arg>sku=${sku}</arg>
+</arguments>
+<assign>
+<var>${end_point}</var>
+</assign>
+<msg timestamp="20211212 21:27:24.596" level="INFO">${end_point} = https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC353CGTH</msg>
+<status status="PASS" starttime="20211212 21:27:24.596" endtime="20211212 21:27:24.596"></status>
+</kw>
+<kw name="Delete On Session" library="RequestsLibrary">
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<arguments>
+<arg>alias=${wishlist_alias}</arg>
+<arg>url=${end_point}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20211212 21:27:25.079" level="INFO">DELETE Request : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC353CGTH 
+ path_url=/v1/wishLists/items?simpleSku=NI083AC353CGTH 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'connection': 'keep-alive', 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'zalora-lang': 'en', 'zalora-country': 'TH', 'Cookie': 'doraemonSessionId=MTYzOTI3Njg1OHxCbWloYTQ4c0VXUTRWdjdnMjIzckNqMWF5THRJLU5LdmJibVVRTGNzV0NQbGlyUGd0Wk94ZmhjcVdMR1J1aHJiYUFIdE0zNUtmM0tJaUpZYXlWd1VHYkZKRk5OQjVvYng3aWVXaFF1WGEwazhEcXBRaEFQZ3o5c1VFNXpnb1NvS0NKOXp3dzd3Tk04aXhyeVhOZ01TOEpWd09KT21MLXotSU4yaDZ3c3Zkb1o2aUhsM0VMQk92M01ZMng2X0E5ekRhRlU4NGpxbEx6M2FEb1lhcGhjRnMxMnAzeU55VHlZU2EzUlZQRkZoTDFHT0J6UGlseXVfOGJkRDFIUldnS0NqdlZqOU84aUF5VGNEbV93VFliZmZvNnRndjNRTU5ERUVtM2UxU2VqeGt5ZEZHYmNneWZFcXJIQlRuLTN6WUxaMVZCNVMwT192Qk96bXRMeTlBNUVCSWh4NGdKQUE1UDk5eWloWVVNLXRDMEZxeFE4ampGdnlVbFkwTnhIV2YxZVp2NDBLd2J6cmRwYjVUMDQweWIwT2VkemNSbjhEMThTUi1OV2NXZkxhMWtEdl9kcEdfVlpkaW40U2ZXYVJRR2ltaF9WVloxMTFDemlRWEpMekdTUGJkX2tXaERLYjktek96NTFhb2JJVzhQRHpXYzFpakVsUXJBQzczWTlPV0dnNzlTaG9UcVhlckl0WVVQZlltQjdHMFV4azRDaElkdjNITVhZd2VPVGM3a2U4elg5UnM2eXZBS0JfMTdmby1VN1hQNDZZUl8wTVRJcHR6NnBjdWRsdjRjdnlaSnlqdWU1MXNPT2JlZ0Zlcy1hM2E1LWUtdERLVEpsSlA0RHQzRjhwbEZqUkREWVFTLUtuWXl1RUczMkZQaFVYMkVZaWJjenprMjJwdnhmcFM2dXVFMUxHd0ZOdl9FLXFuYlZ4U0ZQOV9tM0ptU1hWLWF4ZjFta21DQ2NjN1VRMHVVR1g0d1p4OEM5MlBQZ2hfaC1KbVBVVHVpND18dIwgy0SBkoCA8OjRsxEHa_7pI00%3D', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20211212 21:27:25.079" level="INFO">DELETE Response : url=https://api.supersports.co.th/v1/wishLists/items?simpleSku=NI083AC353CGTH 
+ status=200, reason=OK 
+ headers={'Cache-control': 'no-cache="set-cookie"', 'Content-Type': 'application/vnd.apache.thrift.binary', 'Date': 'Sun, 12 Dec 2021 14:27:22 GMT', 'Set-Cookie': 'doraemonSessionId=MTYzOTMxOTI0MnxYb1pLczF3VGFUSmYySko0V0prYldEeWpuYVRuaDN4bVZJNjNRdEFFeUptQXY0YmlFRXpRRkZsQlBZc0x3bUlLeFdyRHFSWmhNZURERDlFQXdSamR3cHJoS2xCNHZiOVV1Z3h4TXFWUXVrdE93NGJIZnJpM3loSm5YV1g4Ymsza25yVkpoMTBiMEhnaURxN0xDWllLLXY1Yy1DRHZISXU0Nno0eU9PRFA4QVRScUpmS0M5ZXdfbU1IWEVIWmNNcnRaSC05X0J5eW5xb1F5QWNUVnEwdWdaWElXaUpqUU5pblpaLThqcmVRYm41U0dHNkE3R01kZU1tanpjRFJFXzg2aDNjN0V0WG5GSjhKdTJjdmlfMGxuaF81aElsalQ0MVVKQVFFbHVaQzVweExxVzJaQUhqc0FVSEJsaGxIX1JTNUtvS2o1UHA1RnBWYmtsQUpDcXhuaURMVl82cXFCZldHb3lxTWVvb2s2UERtRGJxeFd5eVBZVFBnMzQ4S3hDZHFnQ3FLZG5SQmQ2MVRORmJrLXlWSS05dmdEMjAwNWxMbkozSkdZdWN3ZzRoSjZTb0VIdW40b2JMVmpsMUR0SjBFU1VBZGJFcU5wNUItamhJVXRrOVVtNTM0OWEtRTloLWQwR3ZJa3JNZWEyRjJUNk02NFRfeURyZ3BVRnJhRzdlNUlEejZsSDNRNnBQc1dhMXhBbmphbW1iM0RWUE5iNTRvZURoWkt4amZ0R3NIYlJvd2k3MUVsOGJBWUtKRHRJYjBBX0YtSVI1UkhmVDd2OEMyZ3plTkE2S3dUOUd1N1RaQWtoUjBkQ3RDLUpVdHFydHh5R2ROcmE0VTZYY0pKQ0VfTVhZV1hHV2I0LUMxX3cyUnR1YnRRd3BMVHlVckFCTkFGLXI2by1FZ1ZtNUJTVUZuemtNTzRPazhnUEpRcUZnRlJ1VXVnSlp2LUkwSnJpNXNLRkN4OFN5OV9wazRPUXBUZW5DZjloVE5MU0FpMXF4WW5FOD18BP50DduHDA2OL_j1QFndF9Ba2B4%3D; Path=/; Max-Age=5256000; HttpOnly, AWSELB=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/, AWSELBCORS=89F145391CBD2F6DB7C7D0BD005B396353876889D64D7885DC9BF6DB489C4A5D393B4E30F0A9EC29325ED0B0A3AC68D9819B549BA490BB24D7131CECE3037F9D4EC3735DF3;PATH=/;SECURE;SAMESITE=None', 'Content-Length': '15', 'Connection': 'keep-alive'} 
+ body= 
+ </msg>
+<msg timestamp="20211212 21:27:25.079" level="INFO">c:\users\admin\appdata\local\programs\python\python39\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.supersports.co.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20211212 21:27:25.092" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20211212 21:27:24.596" endtime="20211212 21:27:25.092"></status>
+</kw>
+<kw name="Request Should Be Successful" library="RequestsLibrary">
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<status status="PASS" starttime="20211212 21:27:25.093" endtime="20211212 21:27:25.094"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:24.577" endtime="20211212 21:27:25.095"></status>
+</kw>
+<status status="PASS" starttime="20211212 21:27:24.162" endtime="20211212 21:27:25.095"></status>
+</kw>
+<tags>
+<tag>wishlist</tag>
+<tag>wishlist_add_and_remove_valid</tag>
+</tags>
+<status status="PASS" starttime="20211212 21:27:24.159" endtime="20211212 21:27:25.096" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20211212 21:27:19.255" endtime="20211212 21:27:25.102"></status>
+</suite>
+<status status="PASS" starttime="20211212 21:27:19.252" endtime="20211212 21:27:25.114"></status>
+</suite>
+<status status="PASS" starttime="20211212 21:27:19.249" endtime="20211212 21:27:25.127"></status>
+</suite>
+<status status="PASS" starttime="20211212 21:27:19.219" endtime="20211212 21:27:25.138"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="0">wishlist</stat>
+<stat pass="4" fail="0">wishlist_add_and_remove_valid</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" id="s1" name="Tests">Tests</stat>
+<stat pass="4" fail="0" id="s1-s1" name="Api">Tests.Api</stat>
+<stat pass="4" fail="0" id="s1-s1-s1" name="Wishlist Features">Tests.Api.Wishlist Features</stat>
+<stat pass="4" fail="0" id="s1-s1-s1-s1" name="Wishlist Add And Remove Valid">Tests.Api.Wishlist Features.Wishlist Add And Remove Valid</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20211212 21:27:21.934" level="WARN">Multiple test cases with name 'Verify add valid item to wishlist function' executed in test suite 'Tests.Api.Wishlist Features.Wishlist Add And Remove Valid'.</msg>
+<msg timestamp="20211212 21:27:22.949" level="WARN">Multiple test cases with name 'Verify add valid item to wishlist function' executed in test suite 'Tests.Api.Wishlist Features.Wishlist Add And Remove Valid'.</msg>
+<msg timestamp="20211212 21:27:24.155" level="WARN">Multiple test cases with name 'Verify add valid item to wishlist function' executed in test suite 'Tests.Api.Wishlist Features.Wishlist Add And Remove Valid'.</msg>
+</errors>
+</robot>

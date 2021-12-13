@@ -3,9 +3,8 @@ Library    AppiumLibrary
 Library    String
 Library    Collections
 Library    JSONLibrary
-Library    REST    
+Library    RequestsLibrary
+Library    OperatingSystem
 
 Variables    ${CURDIR}/../common_configs.yaml
-Variables    ${CURDIR}/../test_data.yaml
 Variables    ${CURDIR}/../device_info.yaml
-Variables    ${CURDIR}/../API_data.yaml

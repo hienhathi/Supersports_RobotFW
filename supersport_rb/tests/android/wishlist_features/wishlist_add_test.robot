@@ -4,7 +4,7 @@ Resource    ${CURDIR}/../../../resources/imports/mobile_import.robot
 Test Setup    common_android_functions.Launch SuperSport application, select language
 Test Teardown    Run Keywords    common_android_functions.Clear wishlist then Logout and Close SuperSport Application
 
-Force Tags    wishlist_function
+Force Tags    wishlist_features    wishlist_add_test
 
 *** Test Cases ***
 

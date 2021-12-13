@@ -1,1 +1,12 @@
 GLOBALTIMEOUT: 30
+
+api_end_point:
+  add_to_wishlist: https://api.supersports.co.th/v1/wishLists/items
+  delete_wishlist: https://api.supersports.co.th/v1/wishLists/items?simpleSku={sku}
+
+api_config:
+  header:
+    content_type: application/x-www-form-urlencoded; charset=UTF-8
+    zalora_lang: en
+    zalora_country: TH
+    connection: keep-alive

@@ -1,50 +1,22 @@
 *** Variables ***
-${api_end_point}    ${API_common}[api-end-point]
-&{Wishlist_body}
-...    add_wishlist_body=selectedSizeSystem={sizeSystem}&simpleSku={sku}&wishListId={wlId}
-
+${add_to_wishlist_body}    simpleSku={sku}
+${wishlist_alias}    wishlist
 
 *** Keywords ***
-
 Add item to wishlist
-    [Arguments]     ${sizeSystem}     ${simpleSku}     ${wlId}    
-    &{header}=  Create Dictionary
-    ...    Content-Type=${API_common}[content-type]
-    ...    cookie=${cookies}
-    ...    zalora-lang=${API_common}[zalora-lang]
-    ${body}=     String.Format String   ${Wishlist_body}[add_wishlist_body]  sizeSystem=${sizeSystem}
-    ${body}=     String.Format String   ${Wishlist_body}[add_wishlist_body]  sku=${simpleSku}
-    ${body}=     String.Format String   ${Wishlist_body}[add_wishlist_body]  wlId=${wlId}
-    &{response}=   REST.Post    ${api_end_point}/v1/wishLists/items?setLang=en&d=a
-    ...   headers=${header}
-    ...   body=${body}
-    ${response}=    Rest.Output    response body
-    [Return]    ${response}
-
+    [Arguments]    ${sku}
+    Create session to server    ${wishlist_alias}    ${api_end_point.add_to_wishlist}
+    ${body}    String.Format String    ${add_to_wishlist_body}    sku=${sku}
+    ${response}    POST On Session    alias=${wishlist_alias}    url=${api_end_point.add_to_wishlist}    data=${body}
+    
 Verify add wishlist response
-    [Arguments]     ${response}     ${message}
+    [Arguments]     ${response}     ${status_code}
     ${response}  BuiltIn.Convert To String   ${response}
-    Should contain    ${response}   ${message}
+    Should contain    ${response}    ${status_code}
 
-Verify remove item from wishlist successfully
-    [Arguments]     ${simpleSku}
-    &{header}=  Create Dictionary
-    ...    Content-Type=${API_common}[content-type]
-    ...    cookie=${cookies}
-    ...    zalora-lang=${API_common}[zalora-lang]
-    ${end_point}=   ${api_end_point}/v1/wishLists/items?simpleSku=${simpleSku}&wishListId=&setLang=en&d=a
-    ${response}=    REST.Delete    endpoint=${end_point}    headers=${header}    
-    REST.Integer        response status    200
-    ${response}=    Rest.Output    response body
-    [Return]    ${response}
-
-Remove item from wishlist
-    [Arguments]     ${simpleSku}
-    &{header}=  Create Dictionary
-    ...    Content-Type=${API_common}[content-type]
-    ...    cookie=${cookies}
-    ...    zalora-lang=${API_common}[zalora-lang]
-    ${end_point}=   ${api_end_point}/v1/wishLists/items?simpleSku=${simpleSku}&wishListId=&setLang=en&d=a
-    ${response}=    REST.Delete    endpoint=${end_point}    headers=${header}
-    ${response}=    Rest.Output    response body
-    [Return]    ${response}
+Delete item in wishlist
+    [Arguments]    ${sku}
+    Create session to server    ${wishlist_alias}    ${api_end_point.delete_wishlist}
+    ${end_point}    String.Format String    ${api_end_point.delete_wishlist}    sku=${sku}
+    ${response}    DELETE On Session    alias=${wishlist_alias}    url=${end_point}
+    Request Should Be Successful    ${response}
